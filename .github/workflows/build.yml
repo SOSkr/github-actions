@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-    
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -28,8 +28,7 @@ jobs:
       env:
         nexus_username: ${{ secrets.nexus_username }}
         nexus_password: ${{ secrets.nexus_password }}
-        KEY: ${{ secrets.decryption_key }}
-      run: mvn test --settings .maven/settings.xml -Dsecure.key="$KEY"
+      run: mvn test --settings .maven/settings.xml
     - name: Upload MUnit reports
       uses: actions/upload-artifact@v3
       with:
@@ -62,16 +61,16 @@ jobs:
         commitHash=$(git rev-parse --short "$GITHUB_SHA")
         artifactName2=$(ls target/*.jar | head -1 | sed "s/.jar/-$commitHash.jar/g")
         mv $artifactName1 $artifactName2
-    - name: Upload artifact 
+    - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
           name: artifacts
           path: target/*.jar
-        
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    steps:    
+    steps:
     - name: Checkout this repo
       uses: actions/checkout@v3
     - name: Cache dependencies
@@ -88,11 +87,11 @@ jobs:
       env:
         USERNAME: ${{ secrets.anypoint_platform_username }}
         PASSWORD: ${{ secrets.anypoint_platform_password }}
-        KEY: ${{ secrets.decryption_key }}
+        MULE_ENV: 'DEVELOPMENT'
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DskipMunitTests -DmuleDeploy \
          -Dmule.artifact=$artifactName \
          -Danypoint.username="$USERNAME" \
          -Danypoint.password="$PASSWORD" \
-         -Ddecryption.key="$KEY"
+         -Denvironment=${MULE_ENV} \
