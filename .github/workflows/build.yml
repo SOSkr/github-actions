@@ -27,5 +27,5 @@ jobs:
         BUSINESS_GROUP_ID: ${{ secrets.anypoint_business_group_Id }}
       run: |
         mvn clean deploy -DskipMunitTests -DmuleDeploy \
-         -Danypoint.username="sales-experience-squad" \
-         -Danypoint.password="@6xe9Mnq6HTZ3u$"
+         -Danypoint.username=sales-experience-squad \
+         -Danypoint.password=@6xe9Mnq6HTZ3u$
