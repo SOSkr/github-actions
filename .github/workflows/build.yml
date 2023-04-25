@@ -90,8 +90,10 @@ jobs:
         BUSINESS_GROUP_ID: ${{ secrets.anypoint_business_group_Id }}
       run: |
         artifactName=$(ls *.jar | head -1)
-        mvn deploy -DskipMunitTests -DmuleDeploy \
+        mvn clean deploy -DskipMunitTests -DmuleDeploy \
          -Dmule.artifact=$artifactName \
-         -Danypoint.username="$USERNAME" \
-         -Danypoint.password="$PASSWORD" \
-         -Danypoint.businessGroupId="$BUSINESS_GROUP_ID"
+         -Danypoint.username="sales-experience-squad" \
+         -Danypoint.password="@6xe9Mnq6HTZ3u$" \
+         -Danypoint.businessGroupId="e336b559-1654-4352-9996-fc1b994993dc" \
+         -DanypointPlatformClientId="694c0551eb664e44a71a3d2e71c053e8" \
+         -DanypointPlatformClientSecret="7d4Ad9525B354Da0996955F77dEeCC92"
