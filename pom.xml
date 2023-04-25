@@ -39,17 +39,14 @@
 						<username>${anypoint.username}</username>
 						<password>${anypoint.password}</password>
 						<applicationName>${app.name}</applicationName>
-						<businessGroupId>${anypoint.businessGroupId}</businessGroupId>
 						<environment>${env}</environment>
-						<workerType>MICRO</workerType>
+						<businessGroup>Creditas\Fintech</businessGroup>
+						<workerType>micro</workerType>
 						<region>us-east-2</region>
 						<workers>1</workers>
 						<objectStoreV2>true</objectStoreV2>
-						<!-- Start: SECURED PROPERTIES CI/CD -->
 						<properties>
-							<secure.key>${decryption.key}</secure.key>
 						</properties>
-						<!-- End: SECURED PROPERTIES CI/CD -->
 					</cloudHubDeployment>
 					<classifier>mule-application</classifier>
 				</configuration>
