@@ -93,5 +93,5 @@ jobs:
         mvn deploy -DskipMunitTests -DmuleDeploy \
          -Dmule.artifact=$artifactName \
          -Danypoint.username="$USERNAME" \
-         -Danypoint.password="$PASSWORD" \`
-         -Danypoint.businessGroupId="$BUSINESS_GROUP_ID" \`
+         -Danypoint.password="$PASSWORD" \
+         -Danypoint.businessGroupId="$BUSINESS_GROUP_ID"
